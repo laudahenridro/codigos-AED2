@@ -40,7 +40,7 @@ int menorTroco(int* moedas, int alvo, int tamanho){
             }
         }
     }
-
+    free(menorQtd);
     return menorQtd[alvo];
 
     
