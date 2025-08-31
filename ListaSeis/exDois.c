@@ -25,7 +25,7 @@ int main(){
     int doces[14], alunos[10], tamanhoDoces = sizeof(doces)/ sizeof(*doces), tamanhoAlunos = sizeof(alunos)/ sizeof(*alunos);
 
     for(int i = 0; i<tamanhoDoces; i++){
-        int x = rand() % 5000 + 1000;
+        int x = rand() % 5000 + 2000;
         doces[i] = x;
     }
     for(int i = 0; i<tamanhoAlunos; i++){
@@ -60,11 +60,14 @@ void distribuicaoOtimaDeDoces(int* doces, int* alunos, int tamanhoDoces, int tam
     for(int i = 0; i<tamanhoAlunos; i++)
         relacao[i] = 0;
 
-    for(int i = tamanhoAlunos-1; i>=0; i--){
-        for(int j = tamanhoDoces - 1; j>=0; j--){
-            if(doces[j] >= alunos[i]){
-                relacao[i] = doces[j];
+    int k = 0;
+    for(int i = 0; i<tamanhoAlunos; i++){
+        for(int j = 0; j<tamanhoDoces; j++){
+            if((doces[j] >= alunos[i]) && (k<tamanhoAlunos)){
+                relacao[k] = doces[j];
                 doces[j] = 0;
+                k++;
+                break;
             }
         }
     }
@@ -77,7 +80,7 @@ void distribuicaoOtimaDeDoces(int* doces, int* alunos, int tamanhoDoces, int tam
     printf("\n");
     
 
-    
+    free(relacao);
 
 }
 
